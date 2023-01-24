@@ -1,0 +1,13 @@
+name = "sample_project"
+uuid = "e99cb54d-6a7d-46c6-a9c7-525f36083d4a"
+authors = ["Jackson Bunting <jbunting@tamu.edu> and contributors"]
+version = "0.1.0"
+
+[compat]
+julia = "1.8"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
