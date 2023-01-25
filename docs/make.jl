@@ -7,6 +7,6 @@ makedocs(
          pages=[
                 "Home" => "index.md"
                ])
-# deploydocs(
-#     repo="github.com/bunting-econ/HomogeneityTestBBU.jl.git",
-# )
+deploydocs(
+    repo="github.com/bunting-econ/sample_project.jl.git",
+)
