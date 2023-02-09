@@ -11,9 +11,7 @@ euler_algorithm
 ```
 
 
-## Empirical vignette
-
-The following code generates Table XX in BBU (2023)
+The following code partially replicates the empirical application in Bugni; Bunting and Ura (2023).
 
 ```@setup init
 import Random
@@ -43,10 +41,11 @@ S = [ 13  13  13  13  11   8   8   8   7   7   6   6   9   9   9   8   8   9   9
  12  12  12  11  12  12  12  12  12  12  12  13  12  12  11  11  11  11  12;
  47  46  45  51  48  47  47  44  43  39  39  39  39  39  36  36  36  36  36]
 
-function test_fn(S_data)
+function test_fn(S_data, A_data)
 
     S_support = sort(unique(S_data));
-    outcome_support = S_support
+    S_data = hcat(S_data, A_data[:,end]);
+    outcome_support = sort(unique(S_data[:, 2:end]))
   
     S_cols = size(S_data, 2);
     
@@ -85,14 +84,15 @@ end
 ```
 
 ```@example init
-data_pre = S[:,1:11];
-TS = test_fn(data_pre)
+S_pre = S[:,1:10];
+A_pre = S[:,2:11]
+TS = test_fn(S_pre, A_pre)
 println(TS)
 ```
 ```@example init
-t = homogeneity_test_fn(X = (S, []),
+t = homogeneity_test_fn(X = (S_pre, A_pre),
     test_stat_fn = test_fn,
-    K=20)
+    K=10000,
+    A_trivial=true)
 t
 ```
-
